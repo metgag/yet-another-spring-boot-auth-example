@@ -8,6 +8,7 @@ import com.metgag.base_auth.entity.User;
 import com.metgag.base_auth.entity.enums.Role;
 import com.metgag.base_auth.exception.ApiException;
 import com.metgag.base_auth.repository.UserRepository;
+import com.metgag.base_auth.security.JwtService;
 import com.metgag.base_auth.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Override
     public UserResponse register(RegisterRequest request) {
@@ -53,8 +55,9 @@ public class AuthServiceImpl implements AuthService {
             throw new ApiException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
         }
 
+        String token = jwtService.generateToken(user.getUsername());
         return LoginResponse.builder()
-                .token("")
+                .token(token)
                 .user(UserResponse.fromEntity(user))
                 .build();
     }

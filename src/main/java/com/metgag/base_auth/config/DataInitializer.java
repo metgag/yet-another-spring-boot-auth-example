@@ -10,6 +10,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+import java.util.stream.IntStream;
+
 @Configuration
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
@@ -19,6 +22,16 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        List<User> users = IntStream.rangeClosed(1, 9)
+                .mapToObj(i -> User.builder()
+                        .username("user" + i)
+                        .email("user" + i + "@example.com")
+                        .password(passwordEncoder.encode("string"))
+                        .role(Role.USER)
+                        .build())
+                .toList();
+        userRepository.saveAll(users);
+
         userRepository.save(User.builder()
                 .username("admin12")
                 .email("admin121@example.com")
