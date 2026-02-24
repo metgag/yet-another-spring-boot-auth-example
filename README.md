@@ -2,7 +2,7 @@
 
 A simple Spring Boot project providing **user authentication, registration, and retrieval of current user details**.
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * **Java 21**
 * **Spring Boot 3.5.11**
@@ -10,7 +10,7 @@ A simple Spring Boot project providing **user authentication, registration, and 
 * **Lombok**
 * **Jakarta Bean Validation**
 
-## ✨ Features
+## Features
 
 Based on implemented controllers:
 
@@ -18,7 +18,7 @@ Based on implemented controllers:
 * **User Login** – authenticate and receive JWT token (`/api/auth/login`)
 * **Get Current User Details** – retrieve information about the logged-in user (`/api/users/me`)
 
-## 📝 Notes
+## Notes
 
 * Uses **JWT** for stateless authentication.
 * Passwords should be securely hashed before storage (e.g., BCrypt).
