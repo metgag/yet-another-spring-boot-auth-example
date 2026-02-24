@@ -9,6 +9,7 @@ A simple Spring Boot project providing **user authentication, registration, and 
 * **JJWT 0.12.6**
 * **Lombok**
 * **Jakarta Bean Validation**
+* **H2 Database**
 
 ## Features
 
